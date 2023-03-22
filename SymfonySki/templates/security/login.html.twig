@@ -3,24 +3,23 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+<section id="formPage">
+    <form method="post">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
 
 
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputName">Name</label>
-    <input type="text" value="{{ last_username }}" name="name" id="inputName" class="form-control" autocomplete="username" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+        <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+        <input type="text" placeholder="name" value="{{ last_username }}" name="name" id="inputName" class="form-control" autocomplete="username" required autofocus>
+        <input type="password" placeholder="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+        <input type="hidden" name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
 
-    {#
+        {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
         See https://symfony.com/doc/current/security/remember_me.html
 
@@ -29,10 +28,79 @@
                 <input type="checkbox" name="_remember_me"> Remember me
             </label>
         </div>
-    #}
+        #}
+        <span>Don't have an account ?<a href="{{ path('app_register') }}">Register</a></span>
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+        <button class="btn btn-lg btn-primary" type="submit">
+            Login
+        </button>
+    </form>
+</section>
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Poppins Medium";
+        }
+
+        #formPage{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form{
+            height: 60%;
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1{
+            text-align: center;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+
+        input{
+            background-color: lightgray;
+            height: 60px;
+            margin-top: 25px;
+            border: none;
+            border-radius: 3px;
+            font-size: large;
+            text-align: center;
+        }
+
+        input::placeholder{
+            text-align: center;
+        }
+
+        span{
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        a{
+            text-decoration: none;
+            margin-left: 5px;
+        }
+
+
+        button {
+            background-color: blue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            border: none;
+            margin-top: 30px;
+            height: 50px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
 {% endblock %}

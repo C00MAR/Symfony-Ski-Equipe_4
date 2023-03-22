@@ -23,6 +23,9 @@ class Station implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
+    #[ORM\Column(type:"string", length:255, nullable:true)]
+    private $desc;
+
     /**
      * @var string The hashed password
      */
@@ -38,6 +41,7 @@ class Station implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->name;
     }
+
 
     public function setName(string $name): self
     {

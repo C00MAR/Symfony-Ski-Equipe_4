@@ -18,4 +18,5 @@ class AccountController extends AbstractController
             'user' => $user ,
         ]);
     }
+
 }

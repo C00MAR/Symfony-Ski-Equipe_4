@@ -3,15 +3,30 @@
 {% block title %}Hello AccountController!{% endblock %}
 
 {% block body %}
-<style>
 
-</style>
-<h1>Vous êtes connéctes en tant que {{ user.name }}</h1>
+
 
     {% if app.user %}
+        <h1>Vous êtes connéctes en tant que {{ user.name }}</h1>
         <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+            <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
+
+    
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Poppins Medium";
+        }
+
+        h1{
+            text-align: center;
+        }
+
+    </style>
 
 {% endblock %}
