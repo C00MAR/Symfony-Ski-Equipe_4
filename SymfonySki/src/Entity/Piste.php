@@ -17,9 +17,6 @@ class Piste
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column]
-    private ?int $difficulty = null;
-
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $open_hour = null;
 
@@ -31,6 +28,9 @@ class Piste
 
     #[ORM\Column(length: 255)]
     private ?string $fermeture_message = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $Difficulty = null;
 
     public function getId(): ?int
     {
@@ -45,18 +45,6 @@ class Piste
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getDifficulty(): ?int
-    {
-        return $this->difficulty;
-    }
-
-    public function setDifficulty(int $difficulty): self
-    {
-        $this->difficulty = $difficulty;
 
         return $this;
     }
@@ -105,6 +93,18 @@ class Piste
     public function setFermetureMessage(string $fermeture_message): self
     {
         $this->fermeture_message = $fermeture_message;
+
+        return $this;
+    }
+
+    public function getDifficulty(): ?string
+    {
+        return $this->Difficulty;
+    }
+
+    public function setDifficulty(string $Difficulty): self
+    {
+        $this->Difficulty = $Difficulty;
 
         return $this;
     }
