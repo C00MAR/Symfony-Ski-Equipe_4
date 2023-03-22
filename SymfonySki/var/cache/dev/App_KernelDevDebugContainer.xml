@@ -210,6 +210,10 @@
     <service id="App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Repository\DomaineRepository" class="App\Repository\DomaineRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
     <service id="App\Repository\PisteRepository" class="App\Repository\PisteRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
@@ -219,6 +223,10 @@
       <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\TelesiegeRepository" class="App\Repository\TelesiegeRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -2992,7 +3000,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator._KCNziC"/>
+      <argument type="service" id=".service_locator.nzMTr5D"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -3680,12 +3688,16 @@
     <service id=".abstract.instanceof.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\DomaineRepository" class="App\Repository\DomaineRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\DomaineRepository" class="App\Repository\DomaineRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\PisteRepository" class="App\Repository\PisteRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\PisteRepository" class="App\Repository\PisteRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\StationRepository" class="App\Repository\StationRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\StationRepository" class="App\Repository\StationRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\TelesiegeRepository" class="App\Repository\TelesiegeRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\TelesiegeRepository" class="App\Repository\TelesiegeRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.7nzbL4K" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -4166,12 +4178,14 @@
         <argument key="doctrine.orm.listeners.doctrine_token_provider_schema_subscriber" type="service_closure" id="doctrine.orm.listeners.doctrine_token_provider_schema_subscriber"/>
       </argument>
     </service>
-    <service id=".service_locator._KCNziC" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.nzMTr5D" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Repository\DomaineRepository" type="service_closure" id="App\Repository\DomaineRepository"/>
         <argument key="App\Repository\PisteRepository" type="service_closure" id="App\Repository\PisteRepository"/>
         <argument key="App\Repository\StationRepository" type="service_closure" id="App\Repository\StationRepository"/>
         <argument key="App\Repository\TelesiegeRepository" type="service_closure" id="App\Repository\TelesiegeRepository"/>
+        <argument key="App\Repository\UserRepository" type="service_closure" id="App\Repository\UserRepository"/>
       </argument>
     </service>
     <service id=".service_locator.KLVvNIq" class="Symfony\Component\DependencyInjection\ServiceLocator">
