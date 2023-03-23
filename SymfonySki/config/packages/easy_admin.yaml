@@ -1,0 +1,34 @@
+# config/packages/easy_admin.yaml
+easy_admin:
+  entities:
+
+    User:
+      class: App\Entity\User
+      list:
+        fields:
+          - 'id'
+          - 'prenom'
+          - 'nom'
+          - 'mail'
+      show:
+        fields:
+          - 'id'
+          - 'prenom'
+          - 'nom'
+          - 'mail'
+          - 'password'
+      edit:
+        fields:
+          - 'prenom'
+          - 'nom'
+          - 'mail'
+          - { property: 'password', type: 'password' }
+      new:
+        fields:
+          - 'prenom'
+          - 'nom'
+          - 'mail'
+          - { property: 'password', type: 'password' }
+
+    Piste:
+      class: App\Entity\Piste
