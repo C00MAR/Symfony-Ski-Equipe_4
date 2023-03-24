@@ -8,3 +8,7 @@ easy_admin_bundle:
     resource: '../src/Controller/Admin/'
     type: annotation
     prefix: /admin
+telesiege_default:
+    path: /telesiege/default
+    methods: GET
+    controller: App\Controller\TelesiegeController::createDefaultTelesiege

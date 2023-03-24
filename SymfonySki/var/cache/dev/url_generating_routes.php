@@ -8,4 +8,5 @@ return [
     'app_login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], [], []],
     'app_logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], [], []],
     'admin' => [[], ['_controller' => 'App\\Controller\\Admin\\DashboardController::index'], [], [['text', '/admin/admin']], [], [], []],
+    'telesiege_default' => [[], ['_controller' => 'App\\Controller\\TelesiegeController::createDefaultTelesiege'], [], [['text', '/telesiege/default']], [], [], []],
 ];
