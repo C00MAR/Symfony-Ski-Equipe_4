@@ -24,7 +24,13 @@ class Station implements UserInterface, PasswordAuthenticatedUserInterface
     private array $roles = [];
 
     #[ORM\Column(type:"string", length:255, nullable:true)]
-    private $desc;
+    /* @Assert\Image(mimeTypes="image/*")
+    */
+    private $image;
+
+
+    #[ORM\Column(type:"text", nullable:true)]
+    private $description;
 
     /**
      * @var string The hashed password
@@ -43,9 +49,34 @@ class Station implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
 
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

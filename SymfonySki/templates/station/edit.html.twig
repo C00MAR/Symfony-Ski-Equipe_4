@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Station{% endblock %}
+
+{% block body %}
+    <h1>Modifiez votre profil</h1>
+
+    {{ include('station/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+{% endblock %}
