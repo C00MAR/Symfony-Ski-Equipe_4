@@ -29,6 +29,7 @@ class Telesiege
     #[ORM\Column(length: 255)]
     private ?string $fermeture_message = null;
 
+
     public function getId(): ?int
     {
         return $this->id;

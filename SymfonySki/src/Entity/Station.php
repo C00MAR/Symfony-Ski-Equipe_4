@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\StationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -28,6 +30,16 @@ class Station implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\OneToMany(mappedBy: 'station', targetEntity: Piste::class)]
+    private Collection $pistes;
+
+
+    public function __construct()
+    {
+        $this->pistes = new ArrayCollection();
+        $this->telesieges = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -98,5 +110,65 @@ class Station implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection<int, Telesiege>
+     */
+    public function getTelesieges(): Collection
+    {
+        return $this->telesieges;
+    }
+
+    public function addTelesiege(Telesiege $telesiege): self
+    {
+        if (!$this->telesieges->contains($telesiege)) {
+            $this->telesieges->add($telesiege);
+            $telesiege->setStationId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTelesiege(Telesiege $telesiege): self
+    {
+        if ($this->telesieges->removeElement($telesiege)) {
+            // set the owning side to null (unless already changed)
+            if ($telesiege->getStationId() === $this) {
+                $telesiege->setStationId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Piste>
+     */
+    public function getPistes(): Collection
+    {
+        return $this->pistes;
+    }
+
+    public function addPiste(Piste $piste): self
+    {
+        if (!$this->pistes->contains($piste)) {
+            $this->pistes->add($piste);
+            $piste->setStation($this);
+        }
+
+        return $this;
+    }
+
+    public function removePiste(Piste $piste): self
+    {
+        if ($this->pistes->removeElement($piste)) {
+            // set the owning side to null (unless already changed)
+            if ($piste->getStation() === $this) {
+                $piste->setStation(null);
+            }
+        }
+
+        return $this;
     }
 }

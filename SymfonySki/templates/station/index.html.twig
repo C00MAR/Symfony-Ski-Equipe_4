@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stations{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/station.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+{% endblock %}
+
+{% block header %}
+    {{ include('header.html.twig') }}
+{% endblock %}
+
+{% block body %}
+<style>
+    body {
+        background-image: url('{{ asset('images/image1.png') }}');
+        background-size: cover;
+    }
+</style>
+{% if app.user %}
+    <div class="container">
+        <h1 class="text-center">Liste des stations</h1>
+        <div class="row">
+            {% for station in stations %}
+                <div class="col-md-4">
+                    <div class="station-card">
+                        <div class="station-icon">
+                            <i class="fas fa-mountain"></i>
+                        </div>
+                        <h3>{{ station.name }}</h3>
+                        <a href="#" class="station-details">Voir les détails</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

@@ -1,32 +1,61 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccountController!{% endblock %}
+{% block title %}Profil{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/account.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+  <style>
+    body {
+        background-image: url('{{ asset('images/image1.png') }}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+  </style>
+{% endblock %}
+
+{% block header %}
+  {{ include('header.html.twig') }}
+{% endblock %}
 
 {% block body %}
+{% if app.user %}
+  <div class="container">
+      <h1 class="text-center">Bienvenue {{ user.name }}!</h1>
+      <div class="d-flex justify-content-end mb-3">
+          <a href="{{ path('app_logout') }}" class="btn btn-danger">Se déconnecter</a>
+      </div>
 
-
-
-    {% if app.user %}
-        <h1>Vous êtes connéctes en tant que {{ user.name }}</h1>
-        <div class="mb-3">
-            <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
-
-
-
-    <style>
-        *{
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-            font-family: "Poppins Medium";
-        }
-
-        h1{
-            text-align: center;
-        }
-
-    </style>
+      <div class="card
+            <div class="card shadow">
+          <div class="card-body">
+              <h2>Liste des télésièges :</h2>
+              <ul class="list-group list-group-flush">
+                  {% for telesiege in telesieges %}
+                      <li class="list-group-item">
+                          <div class="telesiege-name-status">
+                              <h5>{{ telesiege.name }}</h5>
+                              {% if telesiege.fermeture %}
+                                  <span class="badge bg-danger">Fermé</span>
+                              {% else %}
+                                  <span class="badge bg-success">Ouvert</span>
+                              {% endif %}
+                          </div>
+                          <div class="telesiege-info">
+                              <p>Heures d'ouverture : {{ telesiege.openHour.format('d/m/Y H:i') }} - {{ telesiege.closeHour.format('d/m/Y H:i') }}</p>
+                              {% if telesiege.fermetureMessage %}
+                                  <p class="fermeture-message">{{ telesiege.fermetureMessage }}</p>
+                              {% endif %}
+                          </div>
+                      </li>
+                  {% endfor %}
+              </ul>
+          </div>
+      </div>
+  </div>
+{% endif %}
 
 {% endblock %}
+

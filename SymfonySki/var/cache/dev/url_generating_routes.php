@@ -4,8 +4,11 @@
 
 return [
     'account' => [[], ['_controller' => 'App\\Controller\\AccountController::index'], [], [['text', '/account']], [], [], []],
+    'app_home' => [[], ['_controller' => 'App\\Controller\\HomeController::index'], [], [['text', '/home']], [], [], []],
     'app_register' => [[], ['_controller' => 'App\\Controller\\RegistrationController::register'], [], [['text', '/register']], [], [], []],
     'app_login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], [], []],
     'app_logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], [], []],
+    'app_station' => [[], ['_controller' => 'App\\Controller\\StationController::index'], [], [['text', '/station']], [], [], []],
     'admin' => [[], ['_controller' => 'App\\Controller\\Admin\\DashboardController::index'], [], [['text', '/admin/admin']], [], [], []],
+    'telesiege_default' => [[], ['_controller' => 'App\\Controller\\TelesiegeController::createDefaultTelesiege'], [], [['text', '/telesiege/default']], [], [], []],
 ];

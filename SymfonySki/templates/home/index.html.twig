@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Bienvenue{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    {% endblock %}
+    
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Nova+Mono&family=Oswald&family=Poppins:wght@100&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-image: url('{{ asset('images/image1.png') }}');
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: 'Nova Mono';
+        }
+
+        
+        .bienvenue {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1;
+        }
+
+        .Titre {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #34495e;
+            margin-bottom: 1rem;
+        }
+
+        .Sous-Titre {
+            font-size: 1.5rem;
+            color: #34495e;
+        }
+
+
+        .stations-list {
+            position: absolute;
+            top: 50%;
+            left: 15%;
+            padding: 12px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+            width: 240px;
+       }
+
+        .stations-list h2 {
+            font-size: 1.2rem;
+            color: #34495e;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .stations-list ul {
+            list-style-type: none;
+        }
+
+        .stations-list li {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            margin-left: 0.8em;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .stations-list li:hover {
+            color: #007bff;
+            transform: translateX(10px);
+        }
+
+        .station-icon {
+            margin-right: 10px;
+        }
+
+        .voir-plus-btn {
+                display: inline-block;
+                padding: 6px 12px;
+                background-color: #007bff;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 5px;
+                font-size: 1.1rem;
+                margin-top: 10px;
+                transition: background-color 0.3s;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: fit-content;
+        }
+
+        .voir-plus-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .station-link {
+        color: inherit;
+        text-decoration: none;
+        }
+
+        .station-link:hover {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'header.html.twig' %}
+
+    <main>
+            <div class="bienvenue">
+                <h1 class="Titre">Rejoignez-Nous</h1>
+                <h2 class="Sous-Titre">Des détails incroyables</h2>
+            </div>
+
+        <div class="stations-list">
+                <h2>Liste des stations</h2>
+                <ul>
+                    {% for station in stations|slice(0, 3) %}
+                        <li>
+                            <a href="{{ path('app_station') }}" class="station-link">
+                                <i class="fas fa-skiing station-icon"></i>
+                                {{ station.name }}
+                            </a>
+                        </li>
+                    {% else %}
+                        <li>Aucune station trouvée.</li>
+                    {% endfor %}
+                </ul>
+                <a href="{{ path('app_station') }}" class="voir-plus-btn">Voir Plus</a>
+            </div>
+    </main>
+</body>
+</html>

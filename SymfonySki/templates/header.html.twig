@@ -1,0 +1,25 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/public/css/header.css') }}">
+{% endblock %}
+
+<header class="header">
+    <div class="header-left">
+        <img src="{{ asset('images/ski-logo.png') }}" alt="Logo" class="logo">
+    </div>
+    <div class="header-center">
+        <nav>
+            <a href="{{ path('app_home') }}" class="nav-item">Home</a>
+            <a href="#" class="nav-item">Contact</a>
+            <a href="#" class="nav-item">Evénement</a>
+            <a href="#" class="nav-item">Boutique</a>
+        </nav>
+    </div>
+    <div class="header-right">
+    <a href="{{ path('account') }}" class="profile-btn">
+        <i class="fas fa-user"></i>
+    </a>
+    <a href="{{ path('admin') }}" class="admin-btn">
+        <i class="fas fa-cog"></i>
+    </a>
+</div>
+</header>
