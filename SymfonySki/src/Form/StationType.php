@@ -25,7 +25,7 @@ class StationType extends AbstractType
             ])
             ->add('image', TextType::class, [
                 'attr' => [
-                    'placeholder' => 'image de profil',
+                    'placeholder' => 'Logo',
                 ]
             ])
         ;
