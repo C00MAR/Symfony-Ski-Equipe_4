@@ -12,9 +12,6 @@ telesiege_default:
     path: /telesiege/default
     methods: GET
     controller: App\Controller\TelesiegeController::createDefaultTelesiege
-<<<<<<< HEAD
-    
-=======
 add_telesiege:
     path: /telesiege/add
     controller: App\Controller\AccountController::addTelesiege
@@ -34,4 +31,3 @@ delete_telesiege:
 index:
     path: /account
     controller: App\Controller\AccountController::index
->>>>>>> felix

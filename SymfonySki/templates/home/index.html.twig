@@ -54,8 +54,8 @@
 
         .stations-list {
             position: absolute;
-            top: 50%;
-            left: 15%;
+            top: 55%;
+            left: 39%;
             padding: 12px;
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 5px;
@@ -136,7 +136,7 @@
                 <ul>
                     {% for station in stations|slice(0, 3) %}
                         <li>
-                            <a href="{{ path('app_station') }}" class="station-link">
+                            <a href="{{ path('app_station_detail', {'id': station.id}) }}" class="station-link">
                                 <i class="fas fa-skiing station-icon"></i>
                                 {{ station.name }}
                             </a>

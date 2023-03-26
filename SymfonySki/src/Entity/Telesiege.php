@@ -29,11 +29,8 @@ class Telesiege
     #[ORM\Column(length: 255)]
     private ?string $fermeture_message = null;
 
-<<<<<<< HEAD
-=======
     #[ORM\ManyToOne(inversedBy: 'telesieges')]
     private ?station $station = null;
->>>>>>> felix
 
     public function getId(): ?int
     {

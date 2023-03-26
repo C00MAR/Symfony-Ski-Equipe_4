@@ -6,49 +6,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Telesiege;
-<<<<<<< HEAD
-=======
 use App\Entity\Station;
 use App\Form\TelesiegeType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
->>>>>>> felix
 
 class TelesiegeController extends AbstractController
 {
     public function createDefaultTelesiege(EntityManagerInterface $em): Response
-<<<<<<< HEAD
-    {
-        $defaultTelesiege = new Telesiege();
-        $defaultTelesiege->setName('Telesiege 3')
-            ->setOpenHour(new \DateTime('08:30'))
-            ->setCloseHour(new \DateTime('16:30'))
-            ->setFermeture(false)
-            ->setFermetureMessage('');
-
-        $em->persist($defaultTelesiege);
-        $em->flush();
-
-        return new Response('Nouveau telesiege créé avec succès !');
-    }
-
-    public function ouvrirPiste(Piste $piste): Response
-    {
-        $piste->setEtat('ouverte');
-        $this->getDoctrine()->getManager()->flush();
-
-        return $this->redirectToRoute('piste_liste');
-    }
-
-    public function fermerPiste(Piste $piste): Response
-    {
-        $piste->setEtat('fermee');
-        $this->getDoctrine()->getManager()->flush();
-
-        return $this->redirectToRoute('piste_liste');
-    }
-}
-=======
 {
     $station = $em->getRepository(Station::class)->find(1); // Récupère l'objet Station avec l'identifiant 1
 
@@ -67,4 +32,3 @@ class TelesiegeController extends AbstractController
 }
 
 }
->>>>>>> felix

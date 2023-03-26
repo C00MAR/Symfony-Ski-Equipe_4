@@ -27,8 +27,14 @@ h1, h2, h3, h4, h5, h6 {
 .row {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between; 
     margin-bottom: 20px;
+    gap: 30px; 
+}
+
+.station-column {
+    padding: 0 15px;
+    max-height: calc((100% - (2 * 30px)) / 3);
 }
 
 .station-card {

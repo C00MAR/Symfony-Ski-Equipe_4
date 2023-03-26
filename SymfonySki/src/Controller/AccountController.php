@@ -12,28 +12,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Telesiege;
-use Doctrine\ORM\EntityManagerInterface;
 
 class AccountController extends AbstractController
 {
 
-<<<<<<< HEAD
-#[Route('/account', name: 'account')]
-public function index(EntityManagerInterface $em): Response
-{
-    $user = $this->getUser();
-    $telesieges = $em->getRepository(Telesiege::class)->findAll();
-
-    return $this->render('account/index.html.twig', [
-        'controller_name' => 'AccountController',
-        'user' => $user,
-        'telesieges' => $telesieges,
-    ]);
-}
-
-
-=======
     #[Route('/account', name: 'account')]
     public function index(EntityManagerInterface $em): Response
     {
@@ -99,7 +81,6 @@ public function index(EntityManagerInterface $em): Response
             'form' => $form->createView(),
         ]);
     }
->>>>>>> felix
 
         
     #[Route('/piste/delete/{id}', name: 'delete_piste"')]

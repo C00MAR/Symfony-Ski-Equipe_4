@@ -1,69 +1,31 @@
 {% extends 'base.html.twig' %}
 
-<<<<<<< HEAD
-{% block title %}Profil{% endblock %}
+{% block title %}Account{% endblock %}
 
 {% block stylesheets %}
-  <link rel="stylesheet" href="{{ asset('css/header.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/account.css') }}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
-  <style>
-    body {
-        background-image: url('{{ asset('images/image1.png') }}');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-  </style>
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/account.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
 {% endblock %}
 
 {% block header %}
-  {{ include('header.html.twig') }}
+    {{ include('header.html.twig') }}
 {% endblock %}
 
 {% block body %}
-{% if app.user %}
-  <div class="container">
-      <h1 class="text-center">Bienvenue {{ user.name }}!</h1>
-      <div class="d-flex justify-content-end mb-3">
-          <a href="{{ path('app_logout') }}" class="btn btn-danger">Se déconnecter</a>
-      </div>
 
-      <div class="card
-            <div class="card shadow">
-          <div class="card-body">
-              <h2>Liste des télésièges :</h2>
-              <ul class="list-group list-group-flush">
-                  {% for telesiege in telesieges %}
-                      <li class="list-group-item">
-                          <div class="telesiege-name-status">
-                              <h5>{{ telesiege.name }}</h5>
-                              {% if telesiege.fermeture %}
-                                  <span class="badge bg-danger">Fermé</span>
-                              {% else %}
-                                  <span class="badge bg-success">Ouvert</span>
-                              {% endif %}
-                          </div>
-                          <div class="telesiege-info">
-                              <p>Heures d'ouverture : {{ telesiege.openHour.format('d/m/Y H:i') }} - {{ telesiege.closeHour.format('d/m/Y H:i') }}</p>
-                              {% if telesiege.fermetureMessage %}
-                                  <p class="fermeture-message">{{ telesiege.fermetureMessage }}</p>
-                              {% endif %}
-                          </div>
-                      </li>
-                  {% endfor %}
-              </ul>
-          </div>
-      </div>
-  </div>
-=======
-{% block title %}Hello AccountController!{% endblock %}
-
-{% block body %}
+<style>
+    body {
+        background-image: url('{{ asset('images/image1.png') }}');
+        background-size: cover;
+    }
+</style>
 
 {% if app.user %}
-    <p>Bienvenue {{ app.user.name }} ! Tu es le {{ app.user.id }}.</p>
-    <a href="{{ path('app_logout') }}" class="btn btn-danger">Se déconnecter</a>
+    <div class="logout-container">
+        <a href="{{ path('app_logout') }}" class="btn btn-danger">Se déconnecter</a>
+    </div>
+    <p class="welcome-text">Bienvenue {{ app.user.name }} !</p>
     
     <h2>Mes télésièges</h2>
     <ul>
@@ -72,21 +34,24 @@
     {% else %}
     {% for telesiege in telesieges %}
         <li>
-            Nom : {{ telesiege.name }}<br>
-            Heure d'ouverture : {{ telesiege.openHour|date('d/m/Y H:i') }}<br>
-            Heure de fermeture : {{ telesiege.closeHour|date('d/m/Y H:i') }}<br>
-            {% if telesiege.fermeture %}
-                Fermeture : Oui<br>
-                Message de fermeture : {{ telesiege.fermetureMessage }}<br>
-            {% else %}
-                Fermeture : Non<br>
-            {% endif %}
-
-            <form action="{{ path('delete_telesiege', {'id': telesiege.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce télésiège ?')">
-                <button type="submit" class="btn btn-danger">Supprimer</button>
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ telesiege.id) }}">
-            </form>
+            <div class="info-block">
+                Nom : {{ telesiege.name }}<br>
+                Heure d'ouverture : {{ telesiege.openHour|date('d/m/Y H:i') }}<br>
+                Heure de fermeture : {{ telesiege.closeHour|date('d/m/Y H:i') }}<br>
+                {% if telesiege.fermeture %}
+                    Fermeture : Oui<br>
+                    Message de fermeture : {{ telesiege.fermetureMessage }}<br>
+                {% else %}
+                    Fermeture : Non<br>
+                {% endif %}
+            </div>
+            <div class="delete-block">
+                <form action="{{ path('delete_telesiege', {'id': telesiege.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce télésiège ?')">
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ telesiege.id) }}">
+                </form>
+            </div>
         </li>
     {% endfor %}
     {% endif %}
@@ -101,32 +66,34 @@
     {% else %}
     {% for piste in pistes %}
         <li>
-            Nom : {{ piste.name }}<br>
-            Difficulté : {{ piste.difficulty }}<br>
-            Heure d'ouverture : {{ piste.openHour|date('d/m/Y H:i') }}<br>
-            Heure de fermeture : {{ piste.closeHour|date('d/m/Y H:i') }}<br>
-            {% if piste.fermeture %}
-                Fermeture : Oui<br>
-                Message de fermeture : {{ piste.fermetureMessage }}<br>
-            {% else %}
-                Fermeture : Non<br>
-            {% endif %}
+            <div class="info-block">
+                Nom : {{ piste.name }}<br>
+                Difficulté : {{ piste.difficulty }}<br>
+                Heure d'ouverture : {{ piste.openHour|date('d/m/Y H:i') }}<br>
+                Heure de fermeture : {{ piste.closeHour|date('d/m/Y H:i') }}<br>
+{% if piste.fermeture %}
+    Fermeture : Oui<br>
+    Message de fermeture : {{ piste.fermetureMessage }}<br>
+{% else %}
+    Fermeture : Non<br>
+{% endif %}
+</div>
+<div class="delete-block">
+    <form action="{{ path('delete_piste', {'id': piste.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette piste ?')">
+        <button type="submit" class="btn btn-danger">Supprimer</button>
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ piste.id) }}">
+    </form>
+</div>
+</li>
+{% endfor %}
+{% endif %}
+</ul>
 
-            <form action="{{ path('delete_piste', {'id': piste.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette piste ?')">
-                <button type="submit" class="btn btn-danger">Supprimer</button>
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ piste.id) }}">
-            </form>
-        </li>
-    {% endfor %}
-     {% endif %}
-    </ul>
-
-    <a href="{{ path('add_piste') }}" class="btn btn-primary">Ajouter une piste</a>
+<a href="{{ path('add_piste') }}" class="btn btn-primary">Ajouter une piste</a>
 
 {% else %}
-    <p>Vous n'êtes pas connecté.</p>
->>>>>>> felix
+<p>Vous n'êtes pas connecté.</p>
 {% endif %}
 
 {% endblock %}

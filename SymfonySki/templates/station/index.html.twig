@@ -24,13 +24,13 @@
         <h1 class="text-center">Liste des stations</h1>
         <div class="row">
             {% for station in stations %}
-                <div class="col-md-4">
+                <div class="col-12 col-sm-6 col-md-6 station-column"> <!-- Modifié pour ajuster les colonnes -->
                     <div class="station-card">
                         <div class="station-icon">
                             <i class="fas fa-mountain"></i>
                         </div>
                         <h3>{{ station.name }}</h3>
-                        <a href="#" class="station-details">Voir les détails</a>
+                        <a href="{{ path('app_station_detail', {'id': station.id}) }}" class="station-details">Voir les détails</a>
                     </div>
                 </div>
             {% endfor %}
