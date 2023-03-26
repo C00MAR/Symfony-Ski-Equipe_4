@@ -40,7 +40,7 @@ class PisteType extends AbstractType
 
     $builder
         ->add('name', TextType::class, [
-            'label' => 'Nom du télésiège'
+            'label' => 'Nom de la Piste'
         ])
         ->add('difficulty', ChoiceType::class, [
             'choices' => [
