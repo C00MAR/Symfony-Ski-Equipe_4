@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notre Domaine & Ses Stations{% endblock %}
+
+{% block body %}
+
+<section class="station">
+    <h1>Les Stations du Domaine :</h1>
+    <div class="row">
+        {% for station in stations %}
+            {% include 'station/card.html.twig' with {'station': station} %}
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}
