@@ -24,6 +24,8 @@
 {% if app.user %}
     <div class="logout-container">
         <a href="{{ path('app_logout') }}" class="btn btn-danger">Se déconnecter</a>
+        <a href="{{ path('add_telesiege') }}" class="btn btn-primary">Ajouter un télésiège</a>
+        <a href="{{ path('add_piste') }}" class="btn btn-primary">Ajouter une piste</a>
     </div>
     <p class="welcome-text">Bienvenue {{ app.user.name }} !</p>
     
@@ -56,8 +58,6 @@
     {% endfor %}
     {% endif %}
     </ul>
-
-    <a href="{{ path('add_telesiege') }}" class="btn btn-primary">Ajouter un télésiège</a>
     
     <h2>Mes pistes</h2>
     <ul>
@@ -89,8 +89,6 @@
 {% endfor %}
 {% endif %}
 </ul>
-
-<a href="{{ path('add_piste') }}" class="btn btn-primary">Ajouter une piste</a>
 
 {% else %}
 <p>Vous n'êtes pas connecté.</p>

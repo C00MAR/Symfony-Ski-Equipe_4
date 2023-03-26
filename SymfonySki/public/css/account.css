@@ -44,7 +44,7 @@ li {
 
 .delete-block {
     position: absolute;
-    bottom: -45px;
+    bottom: -75px;
     left: 0;
     width: 100%;
     display: flex;
@@ -76,6 +76,7 @@ li {
     background-color: #dc3545;
     color: #fff;
     border: none;
+    margin-bottom: 30px;
 }
 
 .btn-danger:hover {
@@ -105,8 +106,10 @@ form {
 .logout-container {
     position: relative;
     display: flex;
-    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 10px;
     padding-right: 10px;
     margin-bottom: 20px;
     margin-top: 10px;
+    flex-direction: row-reverse;
 }
