@@ -103,7 +103,7 @@ class AccountController extends AbstractController
     #[Route('/telesiege/delete/{id}', name: 'delete_telesiege"')]
     public function deleteTelesiege(Request $request, EntityManagerInterface $em): Response
     {
-        $piste = $em->getRepository(Piste::class)->find($request->get('id'));
+        $piste = $em->getRepository(Telesiege::class)->find($request->get('id'));
 
         if (!$piste) {
             throw $this->createNotFoundException('Ce télésiege n\'existe pas.');
@@ -116,5 +116,6 @@ class AccountController extends AbstractController
 
         return $this->redirectToRoute('account');
     }
+
 }
 
