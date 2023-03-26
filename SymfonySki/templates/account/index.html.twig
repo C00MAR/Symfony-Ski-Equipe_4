@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+<<<<<<< HEAD
 {% block title %}Profil{% endblock %}
 
 {% block stylesheets %}
@@ -55,6 +56,77 @@
           </div>
       </div>
   </div>
+=======
+{% block title %}Hello AccountController!{% endblock %}
+
+{% block body %}
+
+{% if app.user %}
+    <p>Bienvenue {{ app.user.name }} ! Tu es le {{ app.user.id }}.</p>
+    <a href="{{ path('app_logout') }}" class="btn btn-danger">Se déconnecter</a>
+    
+    <h2>Mes télésièges</h2>
+    <ul>
+    {% if telesieges is empty %}
+        <p>Aucun télésiège trouvé.</p>
+    {% else %}
+    {% for telesiege in telesieges %}
+        <li>
+            Nom : {{ telesiege.name }}<br>
+            Heure d'ouverture : {{ telesiege.openHour|date('d/m/Y H:i') }}<br>
+            Heure de fermeture : {{ telesiege.closeHour|date('d/m/Y H:i') }}<br>
+            {% if telesiege.fermeture %}
+                Fermeture : Oui<br>
+                Message de fermeture : {{ telesiege.fermetureMessage }}<br>
+            {% else %}
+                Fermeture : Non<br>
+            {% endif %}
+
+            <form action="{{ path('delete_telesiege', {'id': telesiege.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce télésiège ?')">
+                <button type="submit" class="btn btn-danger">Supprimer</button>
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ telesiege.id) }}">
+            </form>
+        </li>
+    {% endfor %}
+    {% endif %}
+    </ul>
+
+    <a href="{{ path('add_telesiege') }}" class="btn btn-primary">Ajouter un télésiège</a>
+    
+    <h2>Mes pistes</h2>
+    <ul>
+    {% if pistes is empty %}
+        <p>Aucune piste trouvée.</p>
+    {% else %}
+    {% for piste in pistes %}
+        <li>
+            Nom : {{ piste.name }}<br>
+            Difficulté : {{ piste.difficulty }}<br>
+            Heure d'ouverture : {{ piste.openHour|date('d/m/Y H:i') }}<br>
+            Heure de fermeture : {{ piste.closeHour|date('d/m/Y H:i') }}<br>
+            {% if piste.fermeture %}
+                Fermeture : Oui<br>
+                Message de fermeture : {{ piste.fermetureMessage }}<br>
+            {% else %}
+                Fermeture : Non<br>
+            {% endif %}
+
+            <form action="{{ path('delete_piste', {'id': piste.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette piste ?')">
+                <button type="submit" class="btn btn-danger">Supprimer</button>
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ piste.id) }}">
+            </form>
+        </li>
+    {% endfor %}
+     {% endif %}
+    </ul>
+
+    <a href="{{ path('add_piste') }}" class="btn btn-primary">Ajouter une piste</a>
+
+{% else %}
+    <p>Vous n'êtes pas connecté.</p>
+>>>>>>> felix
 {% endif %}
 
 {% endblock %}

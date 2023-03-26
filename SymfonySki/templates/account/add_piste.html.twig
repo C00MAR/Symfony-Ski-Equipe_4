@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une piste{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Ajouter une piste</h1>
+
+        {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.difficulty) }}
+            {{ form_widget(form.difficulty, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.open_hour) }}
+            {{ form_widget(form.open_hour, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.close_hour) }}
+            {{ form_widget(form.close_hour, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.fermeture) }}
+            {{ form_widget(form.fermeture, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.fermeture_message) }}
+            {{ form_widget(form.fermeture_message, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+        {{ form_end(form) }}
+
+        <a href="{{ path('index') }}">Retour à la liste des pistes</a>
+    </div>
+{% endblock %}

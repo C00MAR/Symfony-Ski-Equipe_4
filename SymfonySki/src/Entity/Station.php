@@ -31,6 +31,7 @@ class Station implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+<<<<<<< HEAD
     #[ORM\OneToMany(mappedBy: 'station', targetEntity: Piste::class)]
     private Collection $pistes;
 
@@ -39,6 +40,18 @@ class Station implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->pistes = new ArrayCollection();
         $this->telesieges = new ArrayCollection();
+=======
+    #[ORM\OneToMany(mappedBy: 'station', targetEntity: Telesiege::class)]
+    private Collection $telesieges;
+
+    #[ORM\OneToMany(mappedBy: 'station', targetEntity: Piste::class)]
+    private Collection $pistes;
+
+    public function __construct()
+    {
+        $this->telesieges = new ArrayCollection();
+        $this->pistes = new ArrayCollection();
+>>>>>>> felix
     }
 
     public function getId(): ?int
@@ -124,7 +137,11 @@ class Station implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->telesieges->contains($telesiege)) {
             $this->telesieges->add($telesiege);
+<<<<<<< HEAD
             $telesiege->setStationId($this);
+=======
+            $telesiege->setStation($this);
+>>>>>>> felix
         }
 
         return $this;
@@ -134,8 +151,13 @@ class Station implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->telesieges->removeElement($telesiege)) {
             // set the owning side to null (unless already changed)
+<<<<<<< HEAD
             if ($telesiege->getStationId() === $this) {
                 $telesiege->setStationId(null);
+=======
+            if ($telesiege->getStation() === $this) {
+                $telesiege->setStation(null);
+>>>>>>> felix
             }
         }
 

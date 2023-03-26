@@ -12,4 +12,26 @@ telesiege_default:
     path: /telesiege/default
     methods: GET
     controller: App\Controller\TelesiegeController::createDefaultTelesiege
+<<<<<<< HEAD
     
+=======
+add_telesiege:
+    path: /telesiege/add
+    controller: App\Controller\AccountController::addTelesiege
+    methods: [GET, POST]
+add_piste:
+    path: /piste/add
+    controller: App\Controller\AccountController::addPiste
+    methods: [GET, POST]
+delete_piste:
+    path: /piste/delete/{id}
+    controller: App\Controller\AccountController::deletePiste
+    methods: [POST]
+delete_telesiege:
+    path: /telesiege/delete/{id}
+    controller: App\Controller\AccountController::deleteTelesiege
+    methods: [POST]
+index:
+    path: /account
+    controller: App\Controller\AccountController::index
+>>>>>>> felix
