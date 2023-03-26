@@ -23,7 +23,7 @@ class TelesiegeController extends AbstractController
         ->setCloseHour(new \DateTime('16:30'))
         ->setFermeture(false)
         ->setFermetureMessage('')
-        ->setStationId($station); // Associe le Telesiege à la Station avec l'identifiant 1
+        ->setStation($station); // Associe le Telesiege à la Station avec l'identifiant 1
 
     $em->persist($defaultTelesiege);
     $em->flush();

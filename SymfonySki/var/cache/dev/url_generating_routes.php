@@ -4,9 +4,16 @@
 
 return [
     'account' => [[], ['_controller' => 'App\\Controller\\AccountController::index'], [], [['text', '/account']], [], [], []],
+    'delete_piste"' => [['id'], ['_controller' => 'App\\Controller\\AccountController::deletePiste'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/piste/delete']], [], [], []],
+    'delete_telesiege"' => [['id'], ['_controller' => 'App\\Controller\\AccountController::deleteTelesiege'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/telesiege/delete']], [], [], []],
     'app_register' => [[], ['_controller' => 'App\\Controller\\RegistrationController::register'], [], [['text', '/register']], [], [], []],
     'app_login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], [], []],
     'app_logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], [], []],
     'admin' => [[], ['_controller' => 'App\\Controller\\Admin\\DashboardController::index'], [], [['text', '/admin/admin']], [], [], []],
     'telesiege_default' => [[], ['_controller' => 'App\\Controller\\TelesiegeController::createDefaultTelesiege'], [], [['text', '/telesiege/default']], [], [], []],
+    'add_telesiege' => [[], ['_controller' => 'App\\Controller\\AccountController::addTelesiege'], [], [['text', '/telesiege/add']], [], [], []],
+    'add_piste' => [[], ['_controller' => 'App\\Controller\\AccountController::addPiste'], [], [['text', '/piste/add']], [], [], []],
+    'delete_piste' => [['id'], ['_controller' => 'App\\Controller\\AccountController::deletePiste'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/piste/delete']], [], [], []],
+    'delete_telesiege' => [['id'], ['_controller' => 'App\\Controller\\AccountController::deleteTelesiege'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/telesiege/delete']], [], [], []],
+    'index' => [[], ['_controller' => 'App\\Controller\\AccountController::index'], [], [['text', '/account']], [], [], []],
 ];

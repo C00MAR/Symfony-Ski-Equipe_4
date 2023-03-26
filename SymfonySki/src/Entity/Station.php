@@ -31,19 +31,16 @@ class Station implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\OneToMany(mappedBy: 'station_id', targetEntity: Piste::class)]
-    private Collection $pistes;
-
-    #[ORM\OneToMany(mappedBy: 'station_id', targetEntity: Telesiege::class)]
+    #[ORM\OneToMany(mappedBy: 'station', targetEntity: Telesiege::class)]
     private Collection $telesieges;
 
-    #[ORM\ManyToOne(inversedBy: 'stations')]
-    private ?domaine $domaine_id = null;
+    #[ORM\OneToMany(mappedBy: 'station', targetEntity: Piste::class)]
+    private Collection $pistes;
 
     public function __construct()
     {
-        $this->pistes = new ArrayCollection();
         $this->telesieges = new ArrayCollection();
+        $this->pistes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -118,36 +115,6 @@ class Station implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Piste>
-     */
-    public function getPistes(): Collection
-    {
-        return $this->pistes;
-    }
-
-    public function addPiste(Piste $piste): self
-    {
-        if (!$this->pistes->contains($piste)) {
-            $this->pistes->add($piste);
-            $piste->setStationId($this);
-        }
-
-        return $this;
-    }
-
-    public function removePiste(Piste $piste): self
-    {
-        if ($this->pistes->removeElement($piste)) {
-            // set the owning side to null (unless already changed)
-            if ($piste->getStationId() === $this) {
-                $piste->setStationId(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Telesiege>
      */
     public function getTelesieges(): Collection
@@ -159,7 +126,7 @@ class Station implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->telesieges->contains($telesiege)) {
             $this->telesieges->add($telesiege);
-            $telesiege->setStationId($this);
+            $telesiege->setStation($this);
         }
 
         return $this;
@@ -169,22 +136,40 @@ class Station implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->telesieges->removeElement($telesiege)) {
             // set the owning side to null (unless already changed)
-            if ($telesiege->getStationId() === $this) {
-                $telesiege->setStationId(null);
+            if ($telesiege->getStation() === $this) {
+                $telesiege->setStation(null);
             }
         }
 
         return $this;
     }
 
-    public function getDomaineId(): ?domaine
+    /**
+     * @return Collection<int, Piste>
+     */
+    public function getPistes(): Collection
     {
-        return $this->domaine_id;
+        return $this->pistes;
     }
 
-    public function setDomaineId(?domaine $domaine_id): self
+    public function addPiste(Piste $piste): self
     {
-        $this->domaine_id = $domaine_id;
+        if (!$this->pistes->contains($piste)) {
+            $this->pistes->add($piste);
+            $piste->setStation($this);
+        }
+
+        return $this;
+    }
+
+    public function removePiste(Piste $piste): self
+    {
+        if ($this->pistes->removeElement($piste)) {
+            // set the owning side to null (unless already changed)
+            if ($piste->getStation() === $this) {
+                $piste->setStation(null);
+            }
+        }
 
         return $this;
     }

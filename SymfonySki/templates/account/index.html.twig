@@ -5,109 +5,70 @@
 {% block body %}
 
 {% if app.user %}
-    <div class="container">
-        <h1 class="text-center">Bienvenue {{ user.name }}!</h1>
-        <div class="d-flex justify-content-end mb-3">
-            <a href="{{ path('app_logout') }}" class="btn btn-danger">Se déconnecter</a>
-        </div>
+    <p>Bienvenue {{ app.user.name }} ! Tu es le {{ app.user.id }}.</p>
+    <a href="{{ path('app_logout') }}" class="btn btn-danger">Se déconnecter</a>
+    
+    <h2>Mes télésièges</h2>
+    <ul>
+    {% if telesieges is empty %}
+        <p>Aucun télésiège trouvé.</p>
+    {% else %}
+    {% for telesiege in telesieges %}
+        <li>
+            Nom : {{ telesiege.name }}<br>
+            Heure d'ouverture : {{ telesiege.openHour|date('d/m/Y H:i') }}<br>
+            Heure de fermeture : {{ telesiege.closeHour|date('d/m/Y H:i') }}<br>
+            {% if telesiege.fermeture %}
+                Fermeture : Oui<br>
+                Message de fermeture : {{ telesiege.fermetureMessage }}<br>
+            {% else %}
+                Fermeture : Non<br>
+            {% endif %}
 
-        <div class="card shadow">
-            <div class="card-body">
-                <h2>Liste des télésièges :</h2>
-                <ul class="list-group list-group-flush">
-                    {% for telesiege in telesieges %}
-                        <li class="list-group-item">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <h5>{{ telesiege.name }}</h5>
-                                {% if telesiege.fermeture %}
-                                    <span class="badge bg-danger">Fermé</span>
-                                {% else %}
-                                    <span class="badge bg-success">Ouvert</span>
-                                {% endif %}
-                            </div>
-                            <div class="telesiege-info">
-                                <p>Heures d'ouverture : {{ telesiege.openHour.format('d/m/Y H:i') }} - {{ telesiege.closeHour.format('d/m/Y H:i') }}</p>
-                                {% if telesiege.fermetureMessage %}
-                                    <p class="fermeture-message">{{ telesiege.fermetureMessage }}</p>
-                                {% endif %}
-                            </div>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-    </div>
+            <form action="{{ path('delete_telesiege', {'id': telesiege.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce télésiège ?')">
+                <button type="submit" class="btn btn-danger">Supprimer</button>
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ telesiege.id) }}">
+            </form>
+        </li>
+    {% endfor %}
+    {% endif %}
+    </ul>
+
+    <a href="{{ path('add_telesiege') }}" class="btn btn-primary">Ajouter un télésiège</a>
+    
+    <h2>Mes pistes</h2>
+    <ul>
+    {% if pistes is empty %}
+        <p>Aucune piste trouvée.</p>
+    {% else %}
+    {% for piste in pistes %}
+        <li>
+            Nom : {{ piste.name }}<br>
+            Difficulté : {{ piste.difficulty }}<br>
+            Heure d'ouverture : {{ piste.openHour|date('d/m/Y H:i') }}<br>
+            Heure de fermeture : {{ piste.closeHour|date('d/m/Y H:i') }}<br>
+            {% if piste.fermeture %}
+                Fermeture : Oui<br>
+                Message de fermeture : {{ piste.fermetureMessage }}<br>
+            {% else %}
+                Fermeture : Non<br>
+            {% endif %}
+
+            <form action="{{ path('delete_piste', {'id': piste.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette piste ?')">
+                <button type="submit" class="btn btn-danger">Supprimer</button>
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ piste.id) }}">
+            </form>
+        </li>
+    {% endfor %}
+     {% endif %}
+    </ul>
+
+    <a href="{{ path('add_piste') }}" class="btn btn-primary">Ajouter une piste</a>
+
+{% else %}
+    <p>Vous n'êtes pas connecté.</p>
 {% endif %}
-
-<style>
-
-/* Style pour le titre principal */
-h1 {
-  font-size: 2em;
-  margin: 0 0 20px;
-  text-align: center;
-  color: #333;
-  text-shadow: 0 1px 0 #fff;
-}
-
-/* Style pour le lien de déconnexion */
-.mb-3 a {
-  display: block;
-  margin: 20px auto;
-  width: 150px;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  border-radius: 20px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #fff;
-  background-color: #007bff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  text-decoration: none;
-}
-
-.mb-3 a:hover {
-  background-color: #0069d9;
-}
-
-/* Style pour la liste des telesieges */
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-ul li {
-  margin-bottom: 10px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  border-radius: 10px;
-}
-
-ul li:first-child {
-  font-weight: bold;
-  font-size: 18px;
-  color: #333;
-}
-
-/* Style pour les horaires */
-ul li td {
-  font-size: 14px;
-  padding: 5px 10px;
-  text-align: center;
-}
-
-/* Style pour les messages de fermeture */
-ul li:last-child {
-  font-style: italic;
-  color: #999;
-  font-size: 12px;
-  text-align: right;
-}
-
-<style>
 
 {% endblock %}

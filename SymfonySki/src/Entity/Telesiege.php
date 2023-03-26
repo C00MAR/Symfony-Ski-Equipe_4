@@ -30,7 +30,7 @@ class Telesiege
     private ?string $fermeture_message = null;
 
     #[ORM\ManyToOne(inversedBy: 'telesieges')]
-    private ?station $station_id = null;
+    private ?station $station = null;
 
     public function getId(): ?int
     {
@@ -97,16 +97,15 @@ class Telesiege
         return $this;
     }
 
-    public function getStationId(): ?station
+    public function getStation(): ?station
     {
-        return $this->station_id;
+        return $this->station;
     }
 
-    public function setStationId(?station $station_id): self
+    public function setStation(?station $station): self
     {
-        $this->station_id = $station_id;
+        $this->station = $station;
 
         return $this;
     }
-
 }
