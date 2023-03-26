@@ -4,6 +4,7 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
 {% endblock %}
 
@@ -12,12 +13,29 @@
 {% endblock %}
 
 {% block body %}
+
+    <style>
+        body {
+            background-image: url('{{ asset('images/image1.png') }}');
+            background-size: cover;
+        }
+    </style>
+
     <div class="container">
         <h1>Ajouter un télésiège</h1>
 
         {{ form_start(form) }}
-            {{ form_widget(form) }}
-            <button type="submit" class="btn btn-primary">Ajouter</button>
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name) }}
+        <div class="form-row">
+            <div>
+                {{ form_label(form.closeHour, "Heure de fermeture") }}
+                {{ form_widget(form.closeHour) }}
+                {{ form_errors(form.closeHour) }}
+            </div>
+
+        </div>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
         {{ form_end(form) }}
 
         <a href="{{ path('index') }}">Retour à la liste des télésièges</a>
