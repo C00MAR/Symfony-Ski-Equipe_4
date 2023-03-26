@@ -13,7 +13,41 @@
         </div>
     {% endif %}
 
+    <form action="" method="POST">
+        <label for="name">Nom :</label>
+        <input type="text" name="name" id="name" value="<?= $piste->getName() ?>" required>
 
+        <label for="open_hour">Heure d'ouverture :</label>
+        <input type="datetime-local" name="open_hour" id="open_hour" value="<?= $piste->getOpenHour()->format('Y-m-d\TH:i') ?>" required>
+
+        <label for="close_hour">Heure de fermeture :</label>
+        <input type="datetime-local" name="close_hour" id="close_hour" value="<?= $piste->getCloseHour()->format('Y-m-d\TH:i') ?>" required>
+
+        <label for="fermeture">Fermée :</label>
+        <input type="checkbox" name="fermeture" id="fermeture" <?php if($piste->isFermeture()) echo 'checked'; ?>>
+
+        <label for="fermeture_message">Message de fermeture :</label>
+        <textarea name="fermeture_message" id="fermeture_message"><?= $piste->getFermetureMessage() ?></textarea>
+
+        <label for="difficulty">Difficulté :</label>
+        <select name="difficulty" id="difficulty" required>
+            <option value="" disabled selected>Choisir la difficulté</option>
+            <option value="Facile" <?php if($piste->getDifficulty() === 'Facile') echo 'selected'; ?>>Facile</option>
+            <option value="Moyenne" <?php if($piste->getDifficulty() === 'Moyenne') echo 'selected'; ?>>Moyenne</option>
+            <option value="Difficile" <?php if($piste->getDifficulty() === 'Difficile') echo 'selected'; ?>>Difficile</option>
+        </select>
+
+        <label for="station_id">Station :</label>
+        <select name="station_id" id="station_id" required>
+            <option value="" disabled selected>Choisir la station</option>
+            <?php foreach($stations as $station): ?>
+                <option value="<?= $station->getId() ?>" <?php if($piste->getStationId() === $station) echo 'selected'; ?>><?= $station->getName() ?></option>
+            <?php endforeach; ?>
+        </select>
+        <input type="submit" value="Enregistrer">
+    </form>
+    
+    
 
     <style>
         *{
