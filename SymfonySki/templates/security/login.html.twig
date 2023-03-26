@@ -12,7 +12,7 @@
 
 
         <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-        <input type="text" placeholder="name" value="{{ last_username }}" name="name" id="inputName" class="form-control" autocomplete="username" required autofocus>
+        <input type="text" placeholder="Station's name" value="{{ last_username }}" name="name" id="inputName" class="form-control" autocomplete="username" required autofocus>
         <input type="password" placeholder="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
         <input type="hidden" name="_csrf_token"
@@ -103,10 +103,9 @@
             cursor: pointer;
         }
 
-        cursor{
-            width: 10px;
-            height: 10px;
-            color: rebeccapurple;
+        html {
+            cursor: url('https://i.pinimg.com/originals/e0/91/78/e09178dddae59f4928b590d978bd4e97.png'), auto;
         }
+
     </style>
 {% endblock %}
