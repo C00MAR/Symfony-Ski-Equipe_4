@@ -57,7 +57,7 @@ class ProfilController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $stationRepository->save($station, true);
 
-            return $this->redirectToRoute('app_profil_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('account', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('profil/edit.html.twig', [

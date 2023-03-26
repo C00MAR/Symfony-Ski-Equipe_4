@@ -19,6 +19,76 @@
         background-image: url('{{ asset('images/image1.png') }}');
         background-size: cover;
     }
+
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "Poppins Medium";
+    }
+
+    #hautProfil{
+        height: 60vh;
+        display: flex;
+    }
+
+
+
+    #UserImage{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+    }
+
+    #UserImage img{
+        width: 320px;
+        border: 2px solid black;
+    }
+
+    #UserName{
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+    }
+
+    #UserLinks{
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        height: 40%;
+        margin-top: 30px;
+    }
+
+    #UserName{
+        display: flex;
+        align-items: center;
+    }
+
+    #basProfil{
+        height: 30vh;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #basProfil p{
+        width: 70%;
+    }
+
+    h1{
+        font-size: xxx-large;
+        color: white;
+    }
+
+    a{
+        color: black;
+    }
+
+
 </style>
 
 {% if app.user %}
@@ -34,15 +104,15 @@
         <div id="UserImage">
             {% if user.image %}
                 <img src="{{ user.image }}" alt="Photo de profil">
-                <a href="/profil/{{ user.id }}/edit">Modifier votre photo de profil</a>
             {% else%}
                 <img src="https://us.123rf.com/450wm/happyvector071/happyvector0711904/happyvector071190414608/120957993-illustration-cr%C3%A9ative-de-l-espace-r%C3%A9serv%C3%A9-de-profil-d-avatar-par-d%C3%A9faut-isol%C3%A9-sur-fond-maquette-de.jpg?ver=6" alt="photo de profil vierge">
-                <a href="/profil/{{ user.id }}/edit">Ajouter un Logo</a>
             {% endif %}
         </div>
         <div id="UserName">
             <div id="UserLinks">
-                <a href="/profil/{{ user.id }}/edit">Modifier votre profil</a>
+            </div>
+            <div id="h1Name">
+                <h1>{{ user.name }}</h1>
             </div>
         </div>
     </section>
@@ -50,7 +120,7 @@
         {% if user.description %}
             <p>{{ user.description }}</p>
         {% endif %}
-        <a href="/profil/{{ user.id }}/edit">Ajouter/Modifier votre description</a>
+        <a class="btn btn-primary" href="/profil/{{ user.id }}/edit">Modifier votre Profil</a>
     </section>
 
     
