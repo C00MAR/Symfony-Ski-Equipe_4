@@ -28,6 +28,31 @@
         <a href="{{ path('add_piste') }}" class="btn btn-primary">Ajouter une piste</a>
     </div>
     <p class="welcome-text">Bienvenue {{ app.user.name }} !</p>
+
+
+    <section id="hautProfil">
+        <div id="UserImage">
+            {% if user.image %}
+                <img src="{{ user.image }}" alt="Photo de profil">
+                <a href="/profil/{{ user.id }}/edit">Modifier votre photo de profil</a>
+            {% else%}
+                <img src="https://us.123rf.com/450wm/happyvector071/happyvector0711904/happyvector071190414608/120957993-illustration-cr%C3%A9ative-de-l-espace-r%C3%A9serv%C3%A9-de-profil-d-avatar-par-d%C3%A9faut-isol%C3%A9-sur-fond-maquette-de.jpg?ver=6" alt="photo de profil vierge">
+                <a href="/profil/{{ user.id }}/edit">Ajouter un Logo</a>
+            {% endif %}
+        </div>
+        <div id="UserName">
+            <div id="UserLinks">
+                <a href="/profil/{{ user.id }}/edit">Modifier votre profil</a>
+            </div>
+        </div>
+    </section>
+    <section id="basProfil">
+        {% if user.description %}
+            <p>{{ user.description }}</p>
+        {% endif %}
+        <a href="/profil/{{ user.id }}/edit">Ajouter/Modifier votre description</a>
+    </section>
+
     
     <h2>Mes télésièges</h2>
     <ul>
