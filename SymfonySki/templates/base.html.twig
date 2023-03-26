@@ -12,8 +12,18 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+
+        <!-- CSS -->
+        <link href="http://127.0.0.1:8000/assets/css/style.css" rel="stylesheet">
+
+        <!-- FONT -->
+        <link href="https://fonts.cdnfonts.com/css/monument-extended" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     </head>
     <body>
+        {% include "partials/header.html.twig" %}
         {% block body %}{% endblock %}
     </body>
 </html>
